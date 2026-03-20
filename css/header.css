@@ -1,0 +1,69 @@
+header{
+  background-color: var(--theme-second-color);
+}
+
+nav {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+nav a {
+  position: absolute;
+  display: inline-block;
+  animation: cloud-float var(--cloud-duration, 10s) var(--cloud-delay, 0s) ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes cloud-float {
+  0%   { transform: translateX(var(--cx0, 0vw))  translateY(var(--cy0, 0px)); }
+  25%  { transform: translateX(var(--cx1, 5vw))  translateY(var(--cy1, 10px)); }
+  50%  { transform: translateX(var(--cx2, -5vw)) translateY(var(--cy2, -10px)); }
+  75%  { transform: translateX(var(--cx3, 3vw))  translateY(var(--cy3, 8px)); }
+  100% { transform: translateX(var(--cx4, -8vw)) translateY(var(--cy4, -5px)); }
+}
+
+nav a p {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+.cloud{
+  width: 180px;
+}
+@media(max-width: 600px) {
+  .cloud{
+    width: 140px;
+    position: relative;
+    z-index: 0;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  nav a {
+    position: relative;
+    display: inline-block;
+    animation: none;
+  }
+  nav a p {
+    font-size: small;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -340%);
+    margin: 0;
+    z-index: 10;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+  }
+}

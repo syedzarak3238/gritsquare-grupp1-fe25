@@ -1,71 +1,86 @@
-/*Theme colors*/
-body{
-    margin: 0;
-    padding: 0;
+:root {
+	/* Default theme colors */
+	--theme-first-color: #93e4c1;
+	--theme-second-color: #3baea0;
+	--theme-third-color: #118a7e;
+	--theme-fourth-color: #1f6f78;
+
+	/* Dark theme colors */
+	--dark-first-color: #27296d;
+	--dark-second-color: #5e63b6;
+	--dark-third-color: #a393eb;
+	--dark-fourth-color: #f5c7f7;
+
+	/* Flower theme colors */
+	--flower-first-color: #f92a82;
+	--flower-second-color: #fde549;
+	--flower-third-color: #3d2eaf;
+	--flower-fourth-color: #ff7433;
+	--flower-fifth-color: #c585b3;
+
+	/* Active palette (currently set to flower colors) */
+	--first-color: var(--flower-first-color);
+	--second-color: var(--flower-second-color);
+	--third-color: var(--flower-third-color);
+	--fourth-color: var(--flower-fourth-color);
+	--fifth-color: var(--flower-fifth-color);
+}
+*{
+  margin: 0px;
+  padding: 0px;
 }
 
-.first-color { 
-	background: #93e4c1; 
-}
-	
-.second-color { 
-	background: #3baea0; 
-}
-
-.third-color { 
-	background: #118a7e; 
-}
-
-.fourth-color { 
-	background: #1f6f78; 
-}
-
-/*Darker Theme colors*/
-.first-color { 
-	background: #27296d; 
-}
-	
-.second-color { 
-	background: #5e63b6; 
-}
-
-.third-color { 
-	background: #a393eb; 
-}
-
-.fourth-color { 
-	background: #f5c7f7; 
-}
-
-/*Flower colors*/
-.first-color{
-    background: #f92a82;
-}
-
-.second-color{
-    background: #fde549;
-}
-
-.third-color{
-    background: #3d2eaf;
-}
-
-.fourth-color{
-    background: #ff7433;
-}
-
-.fith-color{
-    background: #c585b3;
-}
 
 .garden-wrapper{
+	margin: 0;
+	background-image: url(../img/pixelgarden.png);
+	height: 800px;
+	object-fit: contain;
+}
 
+.garden-wrapper-darkmode{
+	margin: 0;
+	background-image: url(../img/pixelgarden.png);
+	height: 800px;
+	object-fit: contain;
+	
 }
 
 .sky-wrapper{
-    margin: 0;
-    background-image: url(../img/skybackground.png);
-    height: 340px;
-    object-fit: fill;
+	margin: 0;
+	background-image: url(../img/skybackground.png);
+	width: 100%;
+	height: min(340px, 45vw);
+	min-height: 220px;
+	background-size: cover;
+	background-position: bottom;
+	background-repeat: no-repeat;
+	color: black;
 }
 
+.sky-wrapper a,
+.sky-wrapper a:visited,
+.sky-wrapper a:hover,
+.sky-wrapper a:active {
+	color: black;
+	text-decoration: none;
+}
+
+.sky-wrapper-darkmode{
+	margin: 0;
+	background-image: url(../img/pixelnightsky.jpg);
+	width: 100%;
+	height: min(340px, 45vw);
+	min-height: 220px;
+	background-size: cover;
+	background-position: top;
+	background-repeat: no-repeat;
+}
+
+.sky-wrapper-darkmode a,
+.sky-wrapper-darkmode a:visited,
+.sky-wrapper-darkmode a:hover,
+.sky-wrapper-darkmode a:active {
+	color: var(--theme-first-color);
+	text-decoration: none;
+}
