@@ -1,4 +1,14 @@
 :root {
+	/* Light theme colors */
+	--light-bg: #ffffff;
+	--light-text: #111111;
+	--light-accent: #93e4c1;
+
+	/* Dark theme colors */
+	--dark-bg: #1a1a1a;
+	--dark-text: #e0e0e0;
+	--dark-accent: #5e63b6;
+
 	/* Default theme colors */
 	--theme-first-color: #93e4c1;
 	--theme-second-color: #3baea0;
@@ -26,6 +36,21 @@
 	--fifth-color: var(--flower-fifth-color);
 }
 
+html.light-mode {
+	--text-color: var(--light-text);
+	--bg-color: var(--light-bg);
+}
+
+html.dark-mode {
+	--text-color: var(--dark-text);
+	--bg-color: var(--dark-bg);
+	--first-color: var(--dark-first-color);
+	--second-color: var(--dark-second-color);
+	--third-color: var(--dark-third-color);
+	--fourth-color: var(--dark-fourth-color);
+	
+}
+
 *{
   margin: 0px;
   padding: 0px;
@@ -47,7 +72,7 @@
 
 .garden-wrapper-darkmode{
 	margin: 0;
-	background-image: url(../img/backgounds/pixelgarden.png);
+	background-image: url(../img/backgounds/grassnight.png);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -168,38 +193,6 @@
 	cursor: not-allowed;
 }
 
-#spawn-rabbit-btn {
-	position: fixed;
-	right: 16px;
-	bottom: 24px;
-	z-index: 1001;
-	padding: 10px 14px;
-	border: 2px solid #222;
-	border-radius: 10px;
-	background: #ffffff;
-	color: #111;
-	font-weight: 700;
-	cursor: pointer;
-	box-shadow: 0 4px 0 #111;
-}
-
-#spawn-rabbit-btn:active {
-	transform: translateY(2px);
-	box-shadow: 0 2px 0 #111;
-}
-
-.garden-rabbit {
-	position: absolute;
-	width: 48px;
-	height: 48px;
-	image-rendering: pixelated;
-	transition: left 1.2s linear, top 1.2s linear, transform 0.25s ease;
-	pointer-events: none;
-	z-index: 4;
-}
-
-
-
 .sky-wrapper{
 	margin: 0;
 	background-image: url(../img/backgounds/skybackground.png);
@@ -220,6 +213,7 @@
 	text-decoration: none;
 }
 
+
 .sky-wrapper-darkmode{
 	margin: 0;
 	background-image: url(../img/backgounds/pixelnightsky.jpg);
@@ -231,10 +225,45 @@
 	background-repeat: no-repeat;
 }
 
+
+
 .sky-wrapper-darkmode a,
 .sky-wrapper-darkmode a:visited,
 .sky-wrapper-darkmode a:hover,
 .sky-wrapper-darkmode a:active {
 	color: var(--theme-first-color);
 	text-decoration: none;
+}
+
+.theme-toggle-btn {
+	position: fixed;
+	left: 16px;
+	bottom: 24px;
+	z-index: 1001;
+	padding: 10px 14px;
+	border: 2px solid #222;
+	border-radius: 10px;
+	background: #ffffff;
+	color: #111;
+	font-weight: 700;
+	cursor: pointer;
+	box-shadow: 0 4px 0 #111;
+	font-size: 14px;
+	transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:active {
+	transform: translateY(2px);
+	box-shadow: 0 2px 0 #111;
+}
+
+html.dark-mode .theme-toggle-btn {
+	background: #2a2a2a;
+	color: #e0e0e0;
+	border-color: #e0e0e0;
+	box-shadow: 0 4px 0 #e0e0e0;
+}
+
+html.dark-mode .theme-toggle-btn:active {
+	box-shadow: 0 2px 0 #e0e0e0;
 }

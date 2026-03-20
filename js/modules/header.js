@@ -26,6 +26,8 @@ export const renderHeader = links => {
   const mount = document.body
   const existingHeader = mount.querySelector('[data-generated-header="true"]')
   if (existingHeader) existingHeader.remove()
+  const isDarkTheme =
+    document.documentElement.getAttribute('data-theme') === 'dark'
 
   const imagePath = isInSitesFolder()
     ? '../img/icons/pixlecloud.png'
@@ -88,7 +90,7 @@ export const renderHeader = links => {
   })
 
   header.append(nav)
-  header.classList.add('sky-wrapper')
+  header.classList.add(isDarkTheme ? 'sky-wrapper-darkmode' : 'sky-wrapper')
 
   if (mount === document.body) {
     document.body.prepend(header)
