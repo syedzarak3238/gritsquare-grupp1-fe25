@@ -3,10 +3,12 @@ footer{
   justify-content: center;
   background-color: brown;
   background-image: url(../img/backgounds/dirt.png) ;
-  background-size: 60px;
+  background-size: 100px;
   background-repeat: repeat-x;
+  height: 50px;
 }
 img{
   width: 25px;
   justify-content: center;
+  margin-top: 15px;
 }
