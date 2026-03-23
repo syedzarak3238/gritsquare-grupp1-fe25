@@ -98,3 +98,118 @@ export const deleteMessagebyId = async id => {
     throw err
   }
 }
+
+// Get all posts by a specific user
+export const getUserPosts = async (username) => {
+  try {
+    const response = await fetch(url)
+    if (!response.ok) throw new Error(response.status)
+    const messages = await response.json()
+    
+    if (!messages) return {}
+    
+    const userPosts = {}
+    Object.entries(messages).forEach(([id, message]) => {
+      if (message.name === username) {
+        userPosts[id] = message
+      }
+    })
+    return userPosts
+  } catch (error) {
+    console.error('Error fetching user posts:', error)
+    throw error
+  }
+}
+
+// Get user's liked posts
+export const getUserLikedPosts = async (username) => {
+  try {
+    const response = await fetch(`${usersUrl}/${encodeURIComponent(username)}.json`)
+    if (!response.ok) throw new Error(response.status)
+    const user = await response.json()
+    
+    if (!user || !user['liked-posts']) return {}
+    
+    // Fetch all messages to get full post data
+    const messagesResponse = await fetch(url)
+    if (!messagesResponse.ok) throw new Error(messagesResponse.status)
+    const allMessages = await messagesResponse.json()
+    
+    const likedPosts = {}
+    Object.keys(user['liked-posts']).forEach(postId => {
+      if (allMessages[postId]) {
+        likedPosts[postId] = allMessages[postId]
+      }
+    })
+    
+    return likedPosts
+  } catch (error) {
+    console.error('Error fetching liked posts:', error)
+    return {}
+  }
+}
+
+// Like a post
+export const likePost = async (username, postId) => {
+  try {
+    const putResponse = await fetch(
+      `${usersUrl}/${encodeURIComponent(username)}/liked-posts/${encodeURIComponent(postId)}.json`,
+      {
+        method: 'PUT',
+        body: JSON.stringify({}),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' }
+      }
+    )
+    if (!putResponse.ok) throw new Error(putResponse.status)
+    
+    // Also update the like count on the post
+    await updatePostLikes(postId, 1)
+    return true
+  } catch (error) {
+    console.error('Error liking post:', error)
+    throw error
+  }
+}
+
+// Unlike a post
+export const unlikePost = async (username, postId) => {
+  try {
+    const deleteResponse = await fetch(
+      `${usersUrl}/${encodeURIComponent(username)}/liked-posts/${encodeURIComponent(postId)}.json`,
+      { method: 'DELETE' }
+    )
+    if (!deleteResponse.ok) throw new Error(deleteResponse.status)
+    
+    // Also update the like count on the post
+    await updatePostLikes(postId, -1)
+    return true
+  } catch (error) {
+    console.error('Error unliking post:', error)
+    throw error
+  }
+}
+
+// Update post like count
+export const updatePostLikes = async (postId, increment) => {
+  try {
+    const response = await fetch(`${url}/${encodeURIComponent(postId)}.json`)
+    if (!response.ok) throw new Error(response.status)
+    const post = await response.json()
+    
+    const newLikes = (post.likes || 0) + increment
+    
+    const updateResponse = await fetch(
+      `${url}/${encodeURIComponent(postId)}/likes.json`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(newLikes),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' }
+      }
+    )
+    if (!updateResponse.ok) throw new Error(updateResponse.status)
+    return true
+  } catch (error) {
+    console.error('Error updating post likes:', error)
+    throw error
+  }
+}
