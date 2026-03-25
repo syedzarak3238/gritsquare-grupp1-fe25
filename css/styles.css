@@ -758,7 +758,7 @@ html.dark-mode .garden-grass-hint {
 
 /* Popup box */
 .popup-content {
-  background: white;
+  background: rgb(255, 255, 255);
   padding: 20px;
   max-width: 500px; /* Increased width for scrollable text */
   border-radius: 10px;
